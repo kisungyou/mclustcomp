@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: mclustcomp\nType: Package\nTitle: Measures for Comparing Clusters\nVersion: 0.2.0\nAuthors@R: person(\"Kisung\", \"You\", email = \"kyou@nd.edu\", role = c(\"aut\", \"cre\"))\nDescription: Given a set of data points, a clustering is defined as a disjoint partition\n    where each pair of sets in a partition has no overlapping elements. \n    This package provides a collection of methods that play a role somewhat similar to \n    distance or metric that measures similarity of two clusterings - or partitions.\n    For a more detailed description, see Meila, M. (2005) <doi:10.1145/1102351.1102424>.\nLicense: GPL (>=3)\nEncoding: UTF-8\nLazyData: true\nImports: Rcpp\nLinkingTo: Rcpp, RcppArmadillo\nRoxygenNote: 6.0.1\n\n\n\n\n\n",
+    "created" : 1509458063232.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "226385882",
+    "id" : "771E8AAB",
+    "lastKnownWriteTime" : 1509458103,
+    "last_content_update" : 1509458103560,
+    "path" : "~/Desktop/mclustcomp/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

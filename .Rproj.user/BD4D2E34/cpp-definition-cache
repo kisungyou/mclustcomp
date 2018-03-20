@@ -1,0 +1,44 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 15,
+                "file" : "/home/kisung/Dropbox/Etc_Develop/R_mclustcomp/ver_0.1.0/mclustcomp/src/auxiliary.cpp",
+                "kind" : 6,
+                "line" : 14,
+                "name" : "getconfusion(NumericVector, NumericVector, NumericVector, NumericVector)",
+                "parent_name" : "",
+                "usr" : "c:@F@getconfusion#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#S0_#S0_#"
+            },
+            {
+                "column" : 15,
+                "file" : "/home/kisung/Dropbox/Etc_Develop/R_mclustcomp/ver_0.1.0/mclustcomp/src/auxiliary.cpp",
+                "kind" : 6,
+                "line" : 44,
+                "name" : "getcommsize(NumericVector, NumericVector)",
+                "parent_name" : "",
+                "usr" : "c:@F@getcommsize#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#"
+            },
+            {
+                "column" : 15,
+                "file" : "/home/kisung/Dropbox/Etc_Develop/R_mclustcomp/ver_0.1.0/mclustcomp/src/auxiliary.cpp",
+                "kind" : 6,
+                "line" : 68,
+                "name" : "getpair(NumericVector, NumericVector)",
+                "parent_name" : "",
+                "usr" : "c:@F@getpair#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#"
+            },
+            {
+                "column" : 6,
+                "file" : "/home/kisung/Dropbox/Etc_Develop/R_mclustcomp/ver_0.1.0/mclustcomp/src/auxiliary.cpp",
+                "kind" : 6,
+                "line" : 117,
+                "name" : "getprobs(NumericMatrix, NumericVector, NumericVector, const int, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@getprobs#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S1_#1I#d#"
+            }
+        ],
+        "file" : "/home/kisung/Dropbox/Etc_Develop/R_mclustcomp/ver_0.1.0/mclustcomp/src/auxiliary.cpp",
+        "file_last_write" : 1505116304
+    }
+]
