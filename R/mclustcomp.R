@@ -85,17 +85,28 @@
 #'
 #' @export
 mclustcomp <- function(x,y,type.out="all",tversky.param=list()){
-  ## Preprocessing : size argument
+  #------------------------------------------------------------------------
+  ## PREPROCESSING
+  #   1. size argument
+  if ((!is.vector(x))||(!is.vector(y))){
+    stop("* mclustcomp : input 'x' and 'y' should both be a vector of class labels.")
+  }
   n = length(x)
   if (length(y)!=n){
     stop("* mclustcomp : two vectors should be of same size.")
   }
-  ## Preprocessing : Type conversion & unique vector
+
+  #   2. type conversion and unique vector
   if (is.factor(x)){x = as.numeric(x)}
   if (is.factor(y)){y = as.numeric(y)}
   x=round(x); ux=unique(x);
   y=round(y); uy=unique(y);
-  ## Preprocessing : ... : tversky parameter
+  if (length(ux)==1){    warning("* mclustcomp : 'x' is a trivial clustering.")  }
+  if (length(uy)==1){    warning("* mclustcomp : 'y' is a trivial clustering.")  }
+  if (length(ux)==n){    warning("* mclustcomp : 'x' is the singleton clustering.")  }
+  if (length(uy)==n){    warning("* mclustcomp : 'y' is the singleton clustering.")  }
+
+  #   3. tversky parameter
   listdot = as.list(environment())
   if ("tversky.param" %in% names(listdot)){
     tversky.param = listdot$tversky.param
@@ -118,6 +129,7 @@ mclustcomp <- function(x,y,type.out="all",tversky.param=list()){
   scy = get.commsize(y,uy)
   ## Prelim3 : comembership matrix of (2,2)
   pairmat = get.pair(x,y)
+  return(pairmat)
   ## Prelim4 : probability-related stuffs for Mutual Information
   threps = min(1e-10,.Machine$double.eps)
   probs  = get.probs(confmat,scx,scy,n,threps)
