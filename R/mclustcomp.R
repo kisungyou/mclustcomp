@@ -130,7 +130,7 @@ mclustcomp <- function(x,y,type.out="all",tversky.param=list()){
   scy = get.commsize(y,uy)
   ## Prelim3 : comembership matrix of (2,2)
   pairmat = get.pair(x,y)
-  return(pairmat)
+
   ## Prelim4 : probability-related stuffs for Mutual Information
   threps = min(1e-10,.Machine$double.eps)
   probs  = get.probs(confmat,scx,scy,n,threps)
