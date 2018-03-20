@@ -97,10 +97,11 @@ mclustcomp <- function(x,y,type.out="all",tversky.param=list()){
   }
 
   #   2. type conversion and unique vector
-  if (is.factor(x)){x = as.numeric(x)}
-  if (is.factor(y)){y = as.numeric(y)}
-  x=round(x); ux=unique(x);
-  y=round(y); uy=unique(y);
+  x  = aux.conversion(x)
+  y  = aux.conversion(y)
+  ux = unique(x)
+  uy = unique(y)
+
   if (length(ux)==1){    warning("* mclustcomp : 'x' is a trivial clustering.")  }
   if (length(uy)==1){    warning("* mclustcomp : 'y' is a trivial clustering.")  }
   if (length(ux)==n){    warning("* mclustcomp : 'x' is the singleton clustering.")  }
