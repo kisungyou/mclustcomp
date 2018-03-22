@@ -1,7 +1,7 @@
 Package: mclustcomp
 Type: Package
 Title: Measures for Comparing Clusters
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: person("Kisung", "You", email = "kyou@nd.edu", role = c("aut", "cre"))
 Description: Given a set of data points, a clustering is defined as a disjoint partition
     where each pair of sets in a partition has no overlapping elements. 
