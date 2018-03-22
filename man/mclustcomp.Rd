@@ -30,7 +30,7 @@ depending on methodological philosophy behind each. See below for the taxonomy.
 
 \tabular{cl}{
 TYPE \tab FULL NAME \cr
-\code{'adjrand'}  \tab \href{https://en.wikipedia.org/wiki/Rand_index\#Adjusted_Rand_index}{Adjusted Rand index}.\cr
+\code{'adjrand'}  \tab \href{https://en.wikipedia.org/wiki/Rand_index}{Adjusted Rand index}.\cr
 \code{'chisq'}    \tab \href{https://en.wikipedia.org/wiki/Chi-squared_test}{Chi-Squared Coefficient}.\cr
 \code{'fmi'}      \tab \href{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}{Fowlkes-Mallows index}.\cr
 \code{'jaccard'}  \tab \href{https://en.wikipedia.org/wiki/Jaccard_index}{Jaccard index}.\cr
@@ -40,7 +40,7 @@ TYPE \tab FULL NAME \cr
 \code{'rand'}     \tab \href{https://en.wikipedia.org/wiki/Rand_index}{Rand Index}.\cr
 \code{'sdc'}      \tab \href{https://en.wikipedia.org/wiki/Sorensen-Dice_coefficient}{Sørensen–Dice Coefficient}.\cr
 \code{'smc'}      \tab \href{https://en.wikipedia.org/wiki/Simple_matching_coefficient}{Simple Matching Coefficient}.\cr
-\code{'tanimoto'} \tab \href{https://en.wikipedia.org/wiki/Jaccard_index\#Tanimoto_similarity_and_distance}{Tanimoto index}.\cr
+\code{'tanimoto'} \tab \href{https://en.wikipedia.org/wiki/Jaccard_index}{Tanimoto index}.\cr
 \code{'tversky'}  \tab \href{https://en.wikipedia.org/wiki/Tversky_index}{Tversky index}. Tanimoto Coefficient and Dice's coefficient are special cases with (alpha,beta) = (1,1) and (0.5,0.5), respectively.\cr
 \code{'wallace1'} \tab Wallace Criterion Type 1.\cr
 \code{'wallace2'} \tab Wallace Criterion Type 2.
@@ -62,9 +62,12 @@ TYPE \tab FULL NAME \cr
 
 \tabular{cl}{
 TYPE \tab FULL NAME \cr
+\code{'jent'} \tab \href{https://en.wikipedia.org/wiki/Joint_entropy}{Joint Entropy} \cr
 \code{'mi'}   \tab Mutual Information. \cr
-\code{'nmi1'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information\#Normalized_variants}{Normalized Mutual Information} by Strehl and Ghosh. \cr
-\code{'nmi2'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information\#Normalized_variants}{Normalized Mutual Information} by Fred and Jain. \cr
+\code{'nmi1'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information}{Normalized Mutual Information} by Strehl and Ghosh. \cr
+\code{'nmi2'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information}{Normalized Mutual Information} by Fred and Jain. \cr
+\code{'nmi3'} \tab Normalized Mutual Information by Danon et al. \cr
+\code{'nvi'}  \tab Normalized Variation of Information. \cr
 \code{'vi'}   \tab \href{https://en.wikipedia.org/wiki/Variation_of_information}{Variation of Information}.
 }
 }
@@ -132,4 +135,8 @@ mclustcomp(x,z,types="tversky",tversky.param=tparam)
 \insertRef{segaran_programming_2007}{mclustcomp}
 
 \insertRef{tversky_features_1977}{mclustcomp}
+
+\insertRef{danon_comparing_2005}{mclustcomp}
+
+\insertRef{lancichinetti_detecting_2009}{mclustcomp}
 }
