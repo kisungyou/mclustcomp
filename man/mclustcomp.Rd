@@ -51,9 +51,9 @@ TYPE \tab FULL NAME \cr
 
 \tabular{cl}{
 TYPE \tab FULL NAME \cr
-\code{'f'}   \tab F-Measure.
-\code{'mhm'} \tab Meila-Heckerman Measure.
-\code{'mmm'} \tab Maximum-Match Measure.
+\code{'f'}   \tab F-Measure. \cr
+\code{'mhm'} \tab Meila-Heckerman Measure. \cr
+\code{'mmm'} \tab Maximum-Match Measure. \cr
 \code{'vdm'} \tab Van Dongen Measure.
 }
 }
