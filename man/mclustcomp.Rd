@@ -4,12 +4,12 @@
 \alias{mclustcomp}
 \title{Measures for Comparing Clusterings}
 \usage{
-mclustcomp(x, y, type.out = "all", tversky.param = list())
+mclustcomp(x, y, types = "all", tversky.param = list())
 }
 \arguments{
 \item{x, y}{vectors of clustering labels}
 
-\item{type.out}{\code{"all"} for returning scores for every available measure.
+\item{types}{\code{"all"} for returning scores for every available measure.
 Either a single score name or a vector of score names can be supplied. See the section
 for the list of the methods for details.}
 
@@ -18,98 +18,118 @@ weight parameters, and \code{sym}, a logical where \code{FALSE} stands for origi
 for a revised variant to symmetrize the score. Default (alpha,beta)=(1,1).}
 }
 \value{
-a data frame where each element is a score in accordance with a name of the method as a key.
+a data frame with columns \code{types} and corresponding \code{scores}.
 }
 \description{
 Given two partitions \eqn{C_1} and \eqn{C_2}, it returns community comparison scores
 corresponding with a set of designated methods. Note that two label vectors should be
-of same length having either numeric or factor type.
+of same length having either numeric or factor type. Currently we have 3 classes of methods
+depending on methodological philosophy behind each. See below for the taxonomy.
 }
-\section{list of the methods}{
+\section{Category 1. Counting Pairs}{
 
-\describe{
-  \item{\code{'adjrand'}}{\href{https://en.wikipedia.org/wiki/Rand_index#Adjusted_Rand_index}{"Adjusted Rand index"}. See [1985.Hubert].}
-  \item{\code{'chisq'}}{\href{https://en.wikipedia.org/wiki/Chi-squared_test}{"Chi-squared coefficient"}. See [2001.Mirkin].}
-  \item{\code{'f'}}{"F-Meausre". See [1999.Larsen].}
-  \item{\code{'fmi'}}{\href{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}{"Fowlkes-Mallows index"}. See [1983.Fowlkes].}
-  \item{\code{'jaccard'}}{\href{https://en.wikipedia.org/wiki/Jaccard_index}{"Jaccard index"}. See [1901.Jaccard].}
-  \item{\code{'mhm'}}{"Meila-Heckerman Measure". See [2001.Meila].}
-  \item{\code{'mirkin'}}{"Mirkin Metric", also known as "Equivalence Mismatch Distance". See [2000.van Dongen].}
-  \item{\code{'mmm'}}{"Maximum-Match Measure". See [2006.Meila].}
-  \item{\code{'nmi1'}}{\href{https://en.wikipedia.org/wiki/Mutual_information#Normalized_variants}{"Normalized Mutual Information"} by Strehl and Ghosh. See [2003.Strehl].}
-  \item{\code{'nmi2'}}{\href{https://en.wikipedia.org/wiki/Mutual_information#Normalized_variants}{"Normalized Mutual Information"} by Fred and Jain. See [2003.Fred].}
-  \item{\code{'overlap'}}{\href{https://en.wikipedia.org/wiki/Overlap_coefficient}{"Overlap coefficient"}. Also called as "Szymkiewicz-Simpson coefficient". See [1934.Szymkiewicz].}
-  \item{\code{'pd'}}{"Partition Difference". See [2004.Li].}
-  \item{\code{'rand'}}{\href{https://en.wikipedia.org/wiki/Rand_index}{"Rand index"}. See [1971.Rand].}
-  \item{\code{'sdc'}}{\href{https://en.wikipedia.org/wiki/Sorensen-Dice_coefficient}{"Sørensen–Dice coefficient"}. Also known as "Sørensen index", "F1 score" or "Dice's coefficient". See [1948.Sørensen].}
-  \item{\code{'smc'}}{\href{https://en.wikipedia.org/wiki/Simple_matching_coefficient}{"Simple Matching Coefficient"}. See [2007.Segaran].}
-  \item{\code{'tanimoto'}}{\href{https://en.wikipedia.org/wiki/Jaccard_index#Tanimoto_similarity_and_distance}{"Tanimoto index"}. See [1958.Tanimoto].}
-  \item{\code{'tversky'}}{\href{https://en.wikipedia.org/wiki/Tversky_index}{"Tversky index"}. Tanimoto coefficient (\code{'tanimoto'}) and Dice's coefficient (\code{'sdc'}) are special cases of Tversky index
-  when (alpha,beta) = (1,1) and (0.5,0.5), respectively. See [1977.Tversky].}
-  \item{\code{'vdm'}}{"van Dongen measure". See [2000.van Dongen].}
-  \item{\code{'vi'}}{\href{https://en.wikipedia.org/wiki/Variation_of_information}{"Variation of Information"}. See [2003.Kraskov].}
+\tabular{cl}{
+TYPE \tab FULL NAME \cr
+\code{'adjrand'}  \tab \href{https://en.wikipedia.org/wiki/Rand_index#Adjusted_Rand_index}{Adjusted Rand index}.\cr
+\code{'chisq'}    \tab \href{https://en.wikipedia.org/wiki/Chi-squared_test}{Chi-Squared Coefficient}.\cr
+\code{'fmi'}      \tab \href{https://en.wikipedia.org/wiki/Fowlkes-Mallows_index}{Fowlkes-Mallows index}.\cr
+\code{'jaccard'}  \tab \href{https://en.wikipedia.org/wiki/Jaccard_index}{Jaccard index}.\cr
+\code{'mirkin'}   \tab Mirkin Metric, or Equivalence Mismatch Distance. \cr
+\code{'overlap'}  \tab \href{https://en.wikipedia.org/wiki/Overlap_coefficient}{Overlap Coefficient}, or Szymkiewicz-Simpson coefficient.\cr
+\code{'pd'}       \tab Partition Difference.\cr
+\code{'rand'}     \tab \href{https://en.wikipedia.org/wiki/Rand_index}{Rand Index}.\cr
+\code{'sdc'}      \tab \href{https://en.wikipedia.org/wiki/Sorensen-Dice_coefficient}{Sørensen–Dice Coefficient}.\cr
+\code{'smc'}      \tab \href{https://en.wikipedia.org/wiki/Simple_matching_coefficient}{Simple Matching Coefficient}.\cr
+\code{'tanimoto'} \tab \href{https://en.wikipedia.org/wiki/Jaccard_index#Tanimoto_similarity_and_distance}{Tanimoto index}.\cr
+\code{'tversky'}  \tab \href{https://en.wikipedia.org/wiki/Tversky_index}{Tversky index}. Tanimoto Coefficient and Dice's coefficient are special cases with (alpha,beta) = (1,1) and (0.5,0.5), respectively.\cr
+\code{'wallace1'} \tab Wallace Criterion Type 1.\cr
+\code{'wallace2'} \tab Wallace Criterion Type 2.
+}
+}
+
+\section{Category 2. Set Overlaps/Matching}{
+
+\tabular{cl}{
+TYPE \tab FULL NAME \cr
+\code{'f'}   \tab F-Measure.
+\code{'mhm'} \tab Meila-Heckerman Measure.
+\code{'mmm'} \tab Maximum-Match Measure.
+\code{'vdm'} \tab Van Dongen Measure.
+}
+}
+
+\section{Category 3. Information Theory}{
+
+\tabular{cl}{
+TYPE \tab FULL NAME \cr
+\code{'mi'}   \tab Mutual Information. \cr
+\code{'nmi1'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information#Normalized_variants}{Normalized Mutual Information} by Strehl and Ghosh. \cr
+\code{'nmi2'} \tab \href{https://en.wikipedia.org/wiki/Mutual_information#Normalized_variants}{Normalized Mutual Information} by Fred and Jain. \cr
+\code{'vi'}   \tab \href{https://en.wikipedia.org/wiki/Variation_of_information}{Variation of Information}.
 }
 }
 
 \examples{
 ## example 1. compare two identical clusterings
-x = sample(1:5,10,replace=TRUE) # label from 1 to 5, 10 elements
+x = sample(1:5,20,replace=TRUE) # label from 1 to 5, 10 elements
 y = x                           # set two labels x and y equal
 mclustcomp(x,y)                 # show all results
 
 ## example 2. selection of a few methods
-z = sample(1:4,10,replace=TRUE)           # generate a non-trivial clustering
+z = sample(1:4,20,replace=TRUE)           # generate a non-trivial clustering
 cmethods = c("jaccard","tanimoto","rand") # select 3 methods
-mclustcomp(x,z,type.out=cmethods)         # test with the selected scores
+mclustcomp(x,z,types=cmethods)            # test with the selected scores
 
 ## example 3. tversky.param
 tparam = list()                           # create an empty list
 tparam$alpha = 2
 tparam$beta  = 3
 tparam$sym   = TRUE
-mclustcomp(x,z,type.out="tversky")        # default set as Tanimoto case.
-mclustcomp(x,z,type.out="tversky",tversky.param=tparam)
+mclustcomp(x,z,types="tversky")           # default set as Tanimoto case.
+mclustcomp(x,z,types="tversky",tversky.param=tparam)
+
 
 }
 \references{
-[1901.Jaccard] Jaccard, P. (1901) \emph{Étude comparative de la distribution florale dans une portion des Alpes et des Jura.} Bulletin de la Société Vaudoise des Sciences Naturelles, 37:547-579.
+\insertRef{strehl_cluster_2003}{mclustcomp}
 
-[1934.Szymkiewicz] Szymkiewicz, D. (1934) \emph{Une contribution statistique a la geographie floristique.} Acta Societatis Botanicorum Poloniae, Vol.34(3):249-265.
+\insertRef{meila_comparing_2007}{mclustcomp}
 
-[1948.Sørensen] Sørensen, T. (1948) \emph{A method of establishing groups of equal amplitude in plant sociology based on similarity of species and its application
-to analyses of the vegetation on Danish commons.} Kongelige Danske Videnskabernes Selskab, Vol.5(4):1-34.
+\insertRef{goos_comparing_2003}{mclustcomp}
 
-[1958.Tanimoto] Tanimoto, T. (1958) \emph{An Elementary Mathematical theory of Classification and Prediction.} Internal IBM Technical Report.
+\insertRef{wagner_comparing_2007}{mclustcomp}
 
-[1971.Rand] Rand, W.M. (1971) \emph{Objective criteria for the evaluation of clustering methods.} Journal of the American Statistical Association, Vol.66(336):846-850.
+\insertRef{albatineh_similarity_2006}{mclustcomp}
 
-[1977.Tversky] Tversky, A. (1977) \emph{Features of Similarity.} Psychological Reviews, Vol.84(4):327-352.
+\insertRef{mirkin_eleven_2001}{mclustcomp}
 
-[1983.Fowlkes] Fowlkes, E. B. and Mallows, C. L. (1983) \emph{A Method for Comparing Two Hierarchical Clusterings.} Journal of the American
-Statistical Association, Vol.78(383):553-569.
+\insertRef{rand_objective_1971}{mclustcomp}
 
-[1985.Hubert] Hubert, L. and Arabie, P. (1985) \emph{Comparing partitions}. Journal of Classification, Vol.2(1):193-218.
+\insertRef{kuncheva_using_2004}{mclustcomp}
 
-[1999.Larsen] Larsen, B. and Aone, C. (1999) \emph{Fast and effective text mining using linear-time document clustering.}
-Proceedings of the fifth ACM SIGKDD international conference on Knowledge discovery and data mining, 16-22.
+\insertRef{fowlkes_method_1983}{mclustcomp}
 
-[2000.van Dongen] van Dongen, S. (2000) \emph{Performance Criteria for Graph Clustering and Markov Cluster Experiment}. Centrum voor Wiskunde en Informatica,
-Technical Report INS-R0012.
+\insertRef{dongen_performance_2000}{mclustcomp}
 
-[2001.Meila] Meila, M. and Heckerman, D. (2001) \emph{An Experimental Comparison of Model-Based Clustering Methods}. Machine Learning, Vol.42(1-2):9-29.
+\insertRef{jaccard_distribution_1912}{mclustcomp}
 
-[2001.Mirkin] Mirkin, B. (2001) \emph{Eleven Ways to Look at the Chi-Squared Coefficient for Contingency Tables}. The American Statistician, Vol.55(2):111-120.
+\insertRef{li_combining_2010}{mclustcomp}
 
-[2003.Fred] Fred, A. L.N. and Jain, A. K. (2003) \emph{Robust Data Clustering.} Proceedings of IEEE Computer Society Conference on Computer Vision
-and Pattern Recognition, CVPR, (3):128-136.
+\insertRef{larsen_fast_1999}{mclustcomp}
 
-[2003.Kraskov] Kraskov, A., Stögbauer, H., Andrzejak, R.G., and Grassberger, P. (2003) \emph{Hierarchical Clustering Based on Mutual Information.} arXiv:q-bio/0311039.
+\insertRef{meila_experimental_2001}{mclustcomp}
 
-[2003.Strehl] Strehl, A. and Ghosh, J. (2003) \emph{Cluster ensembles - a knowledge reuse framework for combining multiple partitions.} The Journal of Machine Learning Research, Vol.3:583-617.
+\insertRef{cover_elements_2006}{mclustcomp}
 
-[2004.Li] Li, T., Ogihara, M., and Ma, S. (2004) \emph{On combining multiple clusterings.} Proceedings of the thirteenth ACM international conference on Information and knowledge management, 294-303.
+\insertRef{ana_robust_2003}{mclustcomp}
 
-[2006.Meila] Meila, M. (2006) \emph{Comparing clusterings-an information based distance.} Journal of Multivariate Analysis, Vol.98(5):873-895.
+\insertRef{wallace_comment_1983}{mclustcomp}
 
-[2007.Segaran] Segaran, T. (2007) \emph{Programming Collective Intelligence.} O'Reilly Media, ISBN-10:0596529325.
+\insertRef{simpson_mammals_1943}{mclustcomp}
+
+\insertRef{dice_measures_1945}{mclustcomp}
+
+\insertRef{segaran_programming_2007}{mclustcomp}
+
+\insertRef{tversky_features_1977}{mclustcomp}
 }

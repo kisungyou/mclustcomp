@@ -9,8 +9,8 @@
 #' see Meila, M. (2005) <doi:10.1145/1102351.1102424>.
 #'
 #' @docType package
-#' @name package-mclustcomp
-#' @aliases package-mclustcomp
+#' @name mclustcomp-package
+#' @import Rdpack
 #' @importFrom Rcpp evalCpp
 #' @useDynLib mclustcomp
 NULL
