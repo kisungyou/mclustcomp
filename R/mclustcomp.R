@@ -1,6 +1,6 @@
 #' Measures for Comparing Clusterings
 #'
-#' Given two partitions \eqn{C_1} and \eqn{C_2}, it returns community comparison scores
+#' Given two partitions or clusterings \eqn{C_1} and \eqn{C_2}, it returns community comparison scores
 #' corresponding with a set of designated methods. Note that two label vectors should be
 #' of same length having either numeric or factor type. Currently we have 3 classes of methods
 #' depending on methodological philosophy behind each. See below for the taxonomy.
