@@ -128,50 +128,33 @@ List getprobs(NumericMatrix confmat, NumericVector scx, NumericVector scy, const
   NumericVector Px  = scx/n;
   NumericVector Py  = scy/n;
   NumericMatrix Pxy = confmat/n;
-  for (int i=0;i<nk;i++){
-    if (Px[i]<threps){
-      Px[i] = maxthr;
-      warningint = 1;
-    } else if (Px[i]>1-threps){
-      Px[i] = 1-maxthr;
-      warningint = 1;
-    }
-  }
-  for (int j=0;j<nl;j++){
-    if (Py[j]<threps){
-      Py[j] = maxthr;
-      warningint = 2;
-    } else if (Py[j]>1-threps){
-      Py[j] = 1-maxthr;
-      warningint = 2;
-    }
-  }
-  for (int i=0;i<nk;i++){
-    for (int j=0;j<nl;j++){
-      if (Pxy(i,j)<threps){
-        Pxy(i,j) = maxthr;
-        warningint = 3;
-      } else if (Pxy(i,j)>1-threps){
-        Pxy(i,j) = 1-maxthr;
-        warningint = 3;
-      }
-    }
-  }
 
   // 3. compute::3 measures
+  double valx, valy, valxy;
   double log2 = log(2.0);
   double Hx = 0;
   for (int i=0;i<nk;i++){
-    Hx -= Px[i]*log(Px[i])/log2;
+    valx = Px[i];
+    if (valx>0){
+      Hx -= valx*log(valx)/log2;
+    }
   }
   double Hy = 0;
   for (int j=0;j<nl;j++){
-    Hy -= Py[j]*log(Py[j])/log2;
+    valy = Py[j];
+    if (valy>0){
+      Hy -= valy*log(valy)/log2;
+    }
   }
   double Ixy = 0;
   for (int i=0;i<nk;i++){
+    valx = Px[i];
     for (int j=0;j<nl;j++){
-      Ixy += Pxy(i,j)*((log(Pxy(i,j))-log(Px[i])-log(Py[j]))/log2);
+      valy = Py[j];
+      valxy = Pxy(i,j);
+      if ((valx>0)&&(valy>0)&&(valxy>0)){
+        Ixy += valxy*((log(valxy)-log(valx)-log(valy))/log2);
+      }
     }
   }
 
@@ -180,6 +163,76 @@ List getprobs(NumericMatrix confmat, NumericVector scx, NumericVector scy, const
   output["Hx"] = Hx;
   output["Hy"] = Hy;
   output["Ixy"] = Ixy;
-  output["warningint"] = warningint;
   return output;
 }
+//
+//
+// List getprobs_old(NumericMatrix confmat, NumericVector scx, NumericVector scy, const int n, double threps){
+//   // 1. preliminary
+//   const int nk = scx.length();
+//   const int nl = scy.length();
+//   NumericVector altthr(2);
+//   altthr[0] = threps;
+//   altthr[1] = 1e-7;
+//   double maxthr = max(altthr);
+//   int warningint = 0; // 1<-Px, 2<-Py, 3<-Pxy
+//
+//   // 2. compute::basics
+//   NumericVector Px  = scx/n;
+//   NumericVector Py  = scy/n;
+//   NumericMatrix Pxy = confmat/n;
+//   for (int i=0;i<nk;i++){
+//     if (Px[i]<threps){
+//       Px[i] = maxthr;
+//       warningint = 1;
+//     } else if (Px[i]>1-threps){
+//       Px[i] = 1-maxthr;
+//       warningint = 1;
+//     }
+//   }
+//   for (int j=0;j<nl;j++){
+//     if (Py[j]<threps){
+//       Py[j] = maxthr;
+//       warningint = 2;
+//     } else if (Py[j]>1-threps){
+//       Py[j] = 1-maxthr;
+//       warningint = 2;
+//     }
+//   }
+//   for (int i=0;i<nk;i++){
+//     for (int j=0;j<nl;j++){
+//       if (Pxy(i,j)<threps){
+//         Pxy(i,j) = maxthr;
+//         warningint = 3;
+//       } else if (Pxy(i,j)>1-threps){
+//         Pxy(i,j) = 1-maxthr;
+//         warningint = 3;
+//       }
+//     }
+//   }
+//
+//   // 3. compute::3 measures
+//   double log2 = log(2.0);
+//   double Hx = 0;
+//   for (int i=0;i<nk;i++){
+//     Hx -= Px[i]*log(Px[i])/log2;
+//   }
+//   double Hy = 0;
+//   for (int j=0;j<nl;j++){
+//     Hy -= Py[j]*log(Py[j])/log2;
+//   }
+//   double Ixy = 0;
+//   for (int i=0;i<nk;i++){
+//     for (int j=0;j<nl;j++){
+//       Ixy += Pxy(i,j)*((log(Pxy(i,j))-log(Px[i])-log(Py[j]))/log2);
+//     }
+//   }
+//
+//   // 4. return
+//   List output;
+//   output["Hx"] = Hx;
+//   output["Hy"] = Hy;
+//   output["Ixy"] = Ixy;
+//   output["warningint"] = warningint;
+//   return output;
+// }

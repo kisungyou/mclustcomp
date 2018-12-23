@@ -19,10 +19,11 @@
 #' \code{'sdc'}      \tab \href{https://en.wikipedia.org/wiki/Sorensen-Dice_coefficient}{Sørensen–Dice Coefficient}.\cr
 #' \code{'smc'}      \tab \href{https://en.wikipedia.org/wiki/Simple_matching_coefficient}{Simple Matching Coefficient}.\cr
 #' \code{'tanimoto'} \tab \href{https://en.wikipedia.org/wiki/Jaccard_index}{Tanimoto index}.\cr
-#' \code{'tversky'}  \tab \href{https://en.wikipedia.org/wiki/Tversky_index}{Tversky index}. Tanimoto Coefficient and Dice's coefficient are special cases with (alpha,beta) = (1,1) and (0.5,0.5), respectively.\cr
+#' \code{'tversky'}  \tab \href{https://en.wikipedia.org/wiki/Tversky_index}{Tversky index}.\cr
 #' \code{'wallace1'} \tab Wallace Criterion Type 1.\cr
 #' \code{'wallace2'} \tab Wallace Criterion Type 2.
 #' }
+#' Note that Tanimoto Coefficient and Dice's coefficient are special cases with (alpha,beta) = (1,1) and (0.5,0.5), respectively.
 #'
 #' @section Category 2. Set Overlaps/Matching:
 #' \tabular{cl}{
