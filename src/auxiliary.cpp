@@ -7,33 +7,33 @@ using namespace arma;
 /*
  * Aux 1. compute confusion matrix
  */
-//' Compute confusion matrix
-//'
-//' @keywords internal
-// [[Rcpp::export("get.confusion")]]
-NumericMatrix getconfusion(NumericVector x, NumericVector y, NumericVector ux, NumericVector uy){
-  // 1. preprocessing
-  const int k = ux.length();
-  const int l = uy.length();
-  const int n = x.length();
-  NumericMatrix confmat(k,l);
-
-  // 2. main iteration
-  for (int it1=0;it1<k;it1++){
-    int tgtx = ux[it1];
-    for (int it2=0;it2<l;it2++){
-      int tgty = uy[it2];
-      for (int it3=0;it3<n;it3++){
-        if ((x[it3]==tgtx)&&(y[it3]==tgty)){
-          confmat(it1,it2) += 1;
-        }
-      }
-    }
-  }
-
-  // 3. return output
-  return confmat;
-}
+// //' Compute confusion matrix
+// //'
+// //' @keywords internal
+// // [[Rcpp::export("get.confusion")]]
+// NumericMatrix getconfusion(NumericVector x, NumericVector y, NumericVector ux, NumericVector uy){
+//   // 1. preprocessing
+//   const int k = ux.length();
+//   const int l = uy.length();
+//   const int n = x.length();
+//   NumericMatrix confmat(k,l);
+//
+//   // 2. main iteration
+//   for (int it1=0;it1<k;it1++){
+//     int tgtx = ux[it1];
+//     for (int it2=0;it2<l;it2++){
+//       int tgty = uy[it2];
+//       for (int it3=0;it3<n;it3++){
+//         if ((x[it3]==tgtx)&&(y[it3]==tgty)){
+//           confmat(it1,it2) += 1;
+//         }
+//       }
+//     }
+//   }
+//
+//   // 3. return output
+//   return confmat;
+// }
 /*
  * Aux 2. compute community size
  */

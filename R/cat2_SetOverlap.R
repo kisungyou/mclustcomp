@@ -9,18 +9,40 @@
 #' @keywords internal
 #' @noRd
 single08_f <- function(scx,scy,n){
-  # 1. preliminary
-  kk = length(scx)
-  ll = length(scy)
+  # # 1. preliminary
+  # kk = length(scx)
+  # ll = length(scy)
+  #
+  # # 2. computation
+  # output = 0
+  # for (i in 1:kk){
+  #   tx = scx[i]
+  #   vecvaly = (2*tx*scy)/(tx+scy)
+  #   output = output + (tx*max(vecvaly))
+  # }
+  # output = output/n
+  # return(output)
 
-  # 2. computation
-  output = 0
-  for (i in 1:kk){
-    tx = scx[i]
-    vecvaly = (2*tx*scy)/(tx+scy)
-    output = output + (tx*max(vecvaly))
+  # 1. preliminary
+  nx = length(scx)
+  ny = length(scy)
+
+  # 2. matrix entries
+  fij = array(0, c(nx, ny))
+  for (i in 1:nx){
+    ci = scx[i]
+    for (j in 1:ny){
+      cj = scy[j]
+      fij[i,j] = 2*ci*cj/(ci+cj)
+    }
   }
-  output = output/n
+
+  # 3. compute
+  output = 0
+  for (i in 1:nx){
+    # output = output + (max(as.vector(fij[i,]))*scx[i]/n)
+    output = output + (max(as.vector(fij[i,]))*scx[i]/base::sum(scx))
+  }
   return(output)
 }
 

@@ -6,20 +6,11 @@
 
 using namespace Rcpp;
 
-// getconfusion
-NumericMatrix getconfusion(NumericVector x, NumericVector y, NumericVector ux, NumericVector uy);
-RcppExport SEXP _mclustcomp_getconfusion(SEXP xSEXP, SEXP ySEXP, SEXP uxSEXP, SEXP uySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type ux(uxSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type uy(uySEXP);
-    rcpp_result_gen = Rcpp::wrap(getconfusion(x, y, ux, uy));
-    return rcpp_result_gen;
-END_RCPP
-}
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // getcommsize
 NumericVector getcommsize(NumericVector x, NumericVector ux);
 RcppExport SEXP _mclustcomp_getcommsize(SEXP xSEXP, SEXP uxSEXP) {
@@ -59,12 +50,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// genconfusion
+arma::mat genconfusion(arma::vec& x, arma::vec& y, arma::vec& ux, arma::vec& uy);
+RcppExport SEXP _mclustcomp_genconfusion(SEXP xSEXP, SEXP ySEXP, SEXP uxSEXP, SEXP uySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type ux(uxSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type uy(uySEXP);
+    rcpp_result_gen = Rcpp::wrap(genconfusion(x, y, ux, uy));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_mclustcomp_getconfusion", (DL_FUNC) &_mclustcomp_getconfusion, 4},
     {"_mclustcomp_getcommsize", (DL_FUNC) &_mclustcomp_getcommsize, 2},
     {"_mclustcomp_getpair", (DL_FUNC) &_mclustcomp_getpair, 2},
     {"_mclustcomp_getprobs", (DL_FUNC) &_mclustcomp_getprobs, 5},
+    {"_mclustcomp_genconfusion", (DL_FUNC) &_mclustcomp_genconfusion, 4},
     {NULL, NULL, 0}
 };
 
