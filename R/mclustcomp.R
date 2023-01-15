@@ -182,7 +182,7 @@ mclustcomp <- function(x,y,types="all",tversky.param=list()){
   ##  {"all" or single name}
   ## Case 2  : a vector of names; c("f","rand")
   type_allnames = c("adjrand","chisq","f","fmi","jaccard","mhm","mirkin","mmm",
-                    "mi","nmi1","nmi2","overlap","pd","rand","sdc","smc","tanimoto",
+                    "mi","nmi1","nmi2","nmi3","overlap","pd","rand","sdc","smc","tanimoto",
                     "tversky","vdm","vi","wallace1","wallace2","jent","nvi")
   type_out   = unique(types)
   if ("all" %in% type_out){
