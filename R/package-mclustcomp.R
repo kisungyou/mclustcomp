@@ -8,7 +8,7 @@
 #' partitions) \eqn{C} and \eqn{C'}. For a more detailed description,
 #' see Meila, M. (2005) <doi:10.1145/1102351.1102424>.
 #'
-#' @docType package
+#' @noRd
 #' @name mclustcomp-package
 #' @import Rdpack
 #' @importFrom Rcpp evalCpp

@@ -1,14 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-mclustcomp
-==========
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mclustcomp?color=green)](https://cran.r-project.org/package=mclustcomp) [![Travis-CI Build Status](https://travis-ci.org/kisungyou/mclustcomp.svg?branch=master)](https://travis-ci.org/kisungyou/mclustcomp) [![](https://cranlogs.r-pkg.org/badges/mclustcomp)](https://cran.r-project.org/package=mclustcomp)
+# mclustcomp
 
-Installation
-------------
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/mclustcomp?color=green)](https://cran.r-project.org/package=mclustcomp)
+[![](https://cranlogs.r-pkg.org/badges/mclustcomp)](https://cran.r-project.org/package=mclustcomp)
 
-You can install the released version of mclustcomp from [CRAN](https://CRAN.R-project.org) with:
+## Installation
+
+You can install the released version of mclustcomp from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("mclustcomp")
